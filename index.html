@@ -746,25 +746,25 @@
                 name: 'Omnipresent Discord Bot',
                 stack: ['Python', 'discord.py', 'aiosqlite', 'Redis'],
                 desc: 'Production Discord bot with OAuth2 user tracking, hybrid slash/prefix commands, and persistent avatar/name history logging.',
-                link: 'https://github.com/dissentient'
+                link: ''
             },
             {
                 name: 'DCLookup API',
                 stack: ['Cloudflare Workers', 'Hono', 'Workers KV'],
                 desc: 'Lightweight Discord entity lookup REST API deployed on Cloudflare Workers with KV-backed caching.',
-                link: 'https://github.com/dissentient'
+                link: ''
             },
             {
                 name: 'GitHub OSINT Toolkit',
                 stack: ['Python'],
                 desc: 'Automated email extraction tool that traverses public commit history across all repositories for a given GitHub username.',
-                link: 'https://github.com/dissentient'
+                link: ''
             },
             {
                 name: 'NQ Futures Dashboard',
                 stack: ['Node.js', 'Express', 'Lightweight Charts', 'Socket.io'],
                 desc: 'Real-time NQ futures trading UI with live price relay via Yahoo Finance WebSocket and interactive charting.',
-                link: 'https://github.com/dissentient'
+                link: ''
             }
         ];
 
@@ -813,6 +813,8 @@
             projects.forEach(proj => {
                 const el = document.createElement('article');
                 el.className = 'project-card';
+                // Conditionally include the "View →" link only if proj.link is truthy
+                const linkHtml = proj.link ? `<a href="${proj.link}" class="project-link" target="_blank" rel="noopener">View →</a>` : '';
                 el.innerHTML = `
       <p class="project-name">${proj.name}</p>
       <p class="project-desc">${proj.desc}</p>
@@ -820,7 +822,7 @@
         <div class="project-stack">
           ${proj.stack.map(t => `<span class="badge">${t}</span>`).join('')}
         </div>
-        <a href="${proj.link}" class="project-link" target="_blank" rel="noopener">View →</a>
+        ${linkHtml}
       </div>
     `;
                 frag.appendChild(el);
